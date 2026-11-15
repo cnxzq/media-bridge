@@ -1,6 +1,8 @@
 # Media Bridge：音视频转换工具
 
-这是 RTSP2WS 的独立后续项目，目标是支持多种音视频输入、转换和输出。目前处于本地验证阶段，已实现 RTSP 流输入；MP4 等文件作为输入并转换为在线播放流的能力尚未实现。MediaMTX 负责 RTSP 拉流和协议输出，Node 网关注册与删除源，FFmpeg 负责可选转码。页面通过 `StreamPlayer` 封装 MediaMTX 自带播放器，可以选择 WebRTC 或 HLS，播放后可手动取消静音。
+Media Bridge 是 RTSP2WS 的独立后续项目，主要解决 **Web 端播放 RTSP 音视频流**的问题，让前端能够通过 WebRTC 或 HLS 接入播放。项目也计划支持 MP4 等其他音视频输入并转换为在线播放流。
+
+目前处于本地验证阶段，已实现 RTSP 流输入；MP4 等文件输入尚未实现。MediaMTX 负责 RTSP 拉流和协议输出，Node 网关注册与删除源，FFmpeg 负责可选转码。页面通过 `StreamPlayer` 封装 MediaMTX 自带播放器，可以选择 WebRTC 或 HLS，播放后可手动取消静音。
 
 ## 环境及运行
 
