@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>服务器状态 - RTSP2WS</title>
+<style>
+:root{color-scheme:light dark;font-family:system-ui,sans-serif}body{max-width:1040px;margin:2rem auto;padding:0 1rem;line-height:1.6}nav a{color:inherit}header{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}h1,h2,h3,p{margin:.5rem 0}button{font:inherit;padding:.45rem .9rem;cursor:pointer}.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;margin:1rem 0}.card,.stream{border:1px solid #9997;border-radius:8px;padding:1rem}.metric{font-size:1.25rem;font-weight:600}.muted{opacity:.75}.stream{margin:1rem 0}.row{display:flex;gap:.5rem 1rem;flex-wrap:wrap;align-items:center}.badge{border-radius:1rem;padding:.1rem .6rem;background:#8883;font-size:.9rem}.ready{color:#178a50}.bad{color:#c43b3b}@media(prefers-color-scheme:dark){.ready{color:#61d99a}.bad{color:#ff8383}}table{width:100%;border-collapse:collapse;text-align:left}th,td{padding:.55rem;border-bottom:1px solid #8884;vertical-align:top}td{overflow-wrap:anywhere}small{opacity:.75}.empty{padding:1rem;border:1px dashed #888;border-radius:8px}@media(max-width:650px){table,tbody,tr,td{display:block}thead{display:none}td:before{content:attr(data-label) '：';font-weight:600}}
+</style>
+</head><body>
+<nav><a href="/">← 返回播放器</a></nav>
+<header><div><h1>服务器状态</h1><p class="muted">自动每 5 秒刷新，也可以手动刷新。</p></div><button id="refresh">立即刷新</button></header>
+<p id="message" role="status">正在加载状态…</p>
+<div class="summary" aria-label="服务概况">
+<div class="card"><div class="muted">网关</div><div class="metric" id="gateway">—</div></div>
+<div class="card"><div class="muted">媒体服务</div><div class="metric" id="media">—</div></div>
+<div class="card"><div class="muted">注册流</div><div class="metric" id="count">—</div></div>
+<div class="card"><div class="muted">网关内存</div><div class="metric" id="memory">—</div></div>
+</div>
+<p class="muted" id="uptime"></p>
+<h2>流状态</h2><p class="muted">就绪表示媒体路径已有数据，并不代表所有浏览器都能解码。直通模式没有观看者时可能处于等待状态。</p>
+<div id="streams"></div>
+<p><small>读取连接数包括内部转码进程，不能直接视为观看人数。内存仅统计 Node 网关进程。</small></p>
+<script type="module" src="/status.js"></script>
+</body></html>

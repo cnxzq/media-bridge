@@ -1,0 +1,14 @@
+# 本地开发配置；网络部署时需要单独配置认证、TLS 和 WebRTC 连接地址。
+logLevel: warn
+api: yes
+apiAddress: 127.0.0.1:9997
+apiAllowOrigins: []
+rtspAddress: 127.0.0.1:8554
+hlsAddress: 127.0.0.1:8888
+webrtcAddress: 127.0.0.1:8889
+webrtcLocalUDPAddress: 127.0.0.1:8189
+rtmp: no
+srt: no
+moq: no
+paths:
+  all_others:
