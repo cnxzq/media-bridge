@@ -6,23 +6,38 @@ Media Bridge 是 RTSP2WS 的独立后续项目，主要解决 **Web 端播放 RT
 
 ## 环境及运行
 
-- Node.js 24 或更新 LTS；MediaMTX **1.21.1 及以上**（控制 API 早期版本存在安全问题）。
-- FFmpeg，兼容模式需要 `libx264`、`libopus` 和 AAC 编码器。
-- 当前配置只监听本机，适合本机验证。
+需要 Node.js 24 或更新 LTS。可使用项目提供的命令通过系统包管理器安装 FFmpeg 和 MediaMTX：
+
+| 操作系统 | 所需包管理工具 | 安装的包 |
+| --- | --- | --- |
+| macOS | [Homebrew](https://brew.sh/) | `ffmpeg`、`mediamtx` |
+| Linux | [Homebrew on Linux](https://docs.brew.sh/Homebrew-on-Linux) | `ffmpeg`、`mediamtx` |
+| Windows | [WinGet](https://learn.microsoft.com/windows/package-manager/winget/) | `Gyan.FFmpeg`、`bluenviron.mediamtx` |
+
+克隆项目，在项目目录运行：
+
+```sh
+git clone https://github.com/cnxzq/media-bridge.git
+cd media-bridge
+npm run setup
+npm run doctor
+```
+
+`setup` 检查现有程序，仅安装缺失的依赖；它使用系统包管理器，因此不是安装到项目目录，不会自动安装 Homebrew 或 WinGet。已有程序版本过旧或缺少编码器时，命令会提示手动处理，不会自动覆盖。Windows 中 WinGet 安装后可能需要重新打开终端，再运行 `npm run doctor`。包管理器可能要求确认或管理员权限。
+
+`doctor` 不安装或修改软件：它检查 MediaMTX 是否为 **1.21.1 及以上**，并检查 FFmpeg 是否包含 `libx264`、`libopus` 和 AAC 编码器。可用 `FFMPEG_PATH`、`MEDIAMTX_PATH` 指定检查时的可执行文件；网关也使用 `FFMPEG_PATH`。手动指定 `MEDIAMTX_PATH` 时，启动媒体服务请使用对应路径。
 
 两个终端分别运行：
 
 ```sh
-cd media-bridge
 mediamtx mediamtx.yml
 ```
 
 ```sh
-cd media-bridge
 node server.js
 ```
 
-打开 `http://127.0.0.1:3001`，可从首页进入服务器状态页（`http://127.0.0.1:3001/status`），输入 RTSP 地址，选择策略、创建流并播放。需要播放声音时，在播放器中取消静音。`FFMPEG_PATH` 可指定 FFmpeg 路径；`PORT` 可改变网关端口。
+打开 `http://127.0.0.1:3001`，可从首页进入服务器状态页（`http://127.0.0.1:3001/status`），输入 RTSP 地址，选择策略、创建流并播放。需要播放声音时，在播放器中取消静音。`PORT` 可改变网关端口。当前配置只监听本机，适合本机验证。
 
 ## 策略
 
